@@ -24,7 +24,6 @@ public class CanvasView extends View implements ICanvasView {
         InitWidhtAndHight(context);
         initPaint();
         gameManager = new GameManager(this, width,hight);
-
     }
 
     private void initPaint() {
@@ -41,8 +40,6 @@ public class CanvasView extends View implements ICanvasView {
 
         width =point.x;
         hight = point.y;
-
-
     }
 
     @Override
@@ -57,14 +54,14 @@ public class CanvasView extends View implements ICanvasView {
         canvas.drawCircle(circle.getX(), circle.getY(), circle.getRadius(), paint);
     }
 
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        int x = (int) event.getX();
-//        int y = (int) event.getY();
-//        if (event.getAction() == MotionEvent.ACTION_MOVE) {
-//            GameManager.onTouchEvent(x, y);
-//        }
-//        invalidate();
-//        return true;
-//    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            gameManager.onTouchEvent(x, y);
+        }
+        invalidate();
+        return true;
+    }
 }
