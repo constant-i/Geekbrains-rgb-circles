@@ -33,11 +33,7 @@ public class GameManager {
         canvasView.drawCircle(mainCircle);
     }
 
-//    public static void onTouchEvent(int x, int y) {
-//        mainCircle
-//    }
-
-//    public  void onTouchEvent(int x, int y) {
-//        mainCircle.moveMainCircleWhenTouchAt(x,y);
-//    }
+    public void onTouchEvent(int x, int y) {
+        mainCircle.moveMainCircleWhenTouchAt(x, y);
+    }
 }
