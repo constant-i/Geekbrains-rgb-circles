@@ -25,7 +25,7 @@ public class GameManager {
     private void initEnemyCircles() {
         SimpleCircle mainCircleArea = mainCircle.getCircleArea();
         circles = new ArrayList<EnemyCircle>();
-        for (int i = 0; i < MAX_CIRCLES ; i++) {
+        for (int i = 0; i < MAX_CIRCLES; i++) {
             EnemyCircle circle;
             do {
                 circle = EnemyCircle.getRandomCircle();
@@ -62,7 +62,22 @@ public class GameManager {
 
     public void onTouchEvent(int x, int y) {
         mainCircle.moveMainCircleWhenTouchAt(x, y);
+        checkCollision();
         moveCircles();
+    }
+
+    private void checkCollision() {
+        for (EnemyCircle enemyCircle: circles) {
+            if (mainCircle.isIntersect(enemyCircle)) {
+                gameOver();
+            }
+        }
+    }
+
+    private void gameOver() {
+        mainCircle.initRadius();
+        initEnemyCircles();
+        canvasView.redraw();
     }
 
     private void moveCircles() {
