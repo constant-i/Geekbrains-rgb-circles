@@ -3,8 +3,12 @@ package com.hfad.rgbcircles;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import java.util.ArrayList;
+
 public class GameManager {
+    public static final int MAX_CIRCLES = 10;
     private MainCircle mainCircle;
+    private ArrayList<EnemyCircle> circles;
     private CanvasView canvasView;
     private static int width;
     private static int height;
@@ -15,6 +19,16 @@ public class GameManager {
         width = w;
         height = h;
         initMainCircle();
+        initEnemyCircles();
+    }
+
+    private void initEnemyCircles() {
+        circles = new ArrayList<EnemyCircle>();
+        for (int i = 0; i < MAX_CIRCLES ; i++) {
+            EnemyCircle circle;
+            circle = EnemyCircle.getRandomCircle();
+            circles.add(circle);
+        }
     }
 
     public static int getWidth() {
@@ -31,6 +45,9 @@ public class GameManager {
 
     public void onDraw() {
         canvasView.drawCircle(mainCircle);
+        for (EnemyCircle circle : circles) {
+            canvasView.drawCircle(circle);
+        }
     }
 
     public void onTouchEvent(int x, int y) {
