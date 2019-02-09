@@ -13,7 +13,6 @@ public class EnemyCircle extends SimpleCircle {
 
     public EnemyCircle(int x, int y, int radius) {
         super(x, y, radius);
-        setColor(ENEMY_COLOR);
     }
 
     public static EnemyCircle getRandomCircle() {
